@@ -1,0 +1,63 @@
+---
+- name: update APT cache
+  apt: update_cache=yes
+
+- name: install general tools
+  apt: name={{ item }} state=present
+  with_items:
+    - sl #just kidding
+    - htop
+    - curl
+    - zip
+    - unzip
+    - git
+    - vim
+    - gawk
+    - aptitude
+    - build-essential
+    - dkms
+    - nfs-common
+    - nfs-kernel-server
+    - python-pip
+    #media packages
+    - ubuntu-restricted-extras
+    - vlc
+
+- name: set ubuntu clock to UTC
+  shell: timedatectl set-local-rtc 1
+
+- name: aws directory
+  file: path="{{ home }}/.aws" state=directory
+    owner={{user}}
+    group={{user}}
+    mode=0775
+
+- name: aws configuration
+  copy:
+    src="config"
+    dest="{{ home }}/.aws/config"
+    force=no
+    owner={{user}}
+    group={{user}}
+    mode=0775
+
+- name: aws credentials
+  copy:
+    src="credentials"
+    dest="{{ home }}/.aws/credentials"
+    force=no
+    owner={{user}}
+    group={{user}}
+    mode=0775
+
+- name: git configuration
+  copy:
+    src=".gitconfig"
+    dest="{{ home }}/.gitconfig"
+    force=no
+    owner={{user}}
+    group={{user}}
+    mode=0775
+
+- name: aws-cli install
+  shell: pip install awscli

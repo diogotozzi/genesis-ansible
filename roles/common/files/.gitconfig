@@ -1,0 +1,14 @@
+[user]
+    email =
+    name =
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%C(yellow)%h%Creset %C(cyan)%ad%Creset | %s%Cred%d%Creset %Cgreen(%cr)%Creset [%C(bold blue)%an%Creset]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    l = log --stat
+[core]
+    editor = vim
