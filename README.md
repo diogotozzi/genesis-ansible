@@ -15,8 +15,14 @@ $ sudo apt-get update
 $ sudo apt-get install ansible
 ```
 
+Install Ansible Galaxy RVM
+
+```sh
+$ sudo ansible-galaxy install AerisCloud.rvm
+```
+
 Then run Ansible playbook
 
 ```sh
-$ sudo ansible-playbook playbook.yml
+$ sudo ansible-playbook -i hosts playbook.yml
 ```
